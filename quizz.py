@@ -8,7 +8,7 @@ Created on Mon Jan 29 17:18:01 2024
 import random
 
 def quizz():
-    i = random.randint(0,3)
+    i = random.randint(0,4)
         
     if i ==0:
         print("what is 2+2 ")
@@ -54,6 +54,18 @@ def quizz():
         while k!="b":
             if k not in ["a","b","c","d"]:
                 print("tu dois répondes avec la lettre a b c ou d !")
+            else: 
+                print("ce n'est pas la bonne réponses")
+            k=input()
+        print(f"en effet {k} est la bonne réponse ")
+        return(None)
+    if i == 4:
+        print("question: What galaxy is Earth located in?")
+        print("a - Andromeda Galaxy\nb - Whirlpool Galaxy\nc - Milky Way Galaxy")
+        k=input()
+        while k!="c":
+            if k not in ["a","b","c"]:
+                print("tu dois répondes avec la lettre a b ou c!")
             else: 
                 print("ce n'est pas la bonne réponses")
             k=input()
