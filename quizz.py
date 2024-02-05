@@ -7,70 +7,49 @@ Created on Mon Jan 29 17:18:01 2024
 
 import random
 
-def quizz():
-    i = random.randint(0,4)
-        
-    if i ==0:
-        print("what is 2+2 ")
-        print(f" a: {random.randint(0,2)} \n b: {random.randint(5,7)} \n c: {random.randint(8,9)} \n d: 4")
-        k=input()
-        while k!="d":
-            if k not in ["a","b","c","d"]:
-                print("tu dois répondes avec la lettre a b c ou d !")
-            else: 
-                print("ce n'est pas la bonne réponses")
-            k=input()
-        print(f"en effet {k} est la bonne réponse ")
-        return(None)
-        
-    if i ==1:
-        print("what is 2-2 ")
-        print(f" a: 0 \n b: {random.randint(5,7)} \n c: {random.randint(8,9)} \n d: {random.randint(10,100)}")
-        k=input()
-        while k!="a":
-            if k not in ["a","b","c","d"]:
-                print("tu dois répondes avec la lettre a b c ou d !")
-            else: 
-                print("ce n'est pas la bonne réponses")
-            k=input()
-        print(f"en effet {k} est la bonne réponse ")
-        return(None)
-    if i ==2:
-        print("what is 2*2 ")
-        print(f" a: {random.randint(0,2)} \n b: {random.randint(5,7)} \n c: 4 \n d: {random.randint(8,9)}")
-        k=input()
-        while k!="c":
-            if k not in ["a","b","c","d"]:
-                print("tu dois répondes avec la lettre a b c ou d !")
-            else: 
-                print("ce n'est pas la bonne réponses")
-            k=input()
-        print(f"en effet {k} est la bonne réponse ")
-        return(None)
-    if i ==3:
-        print("what is 2/2 ")
-        print(f" a: {random.randint(-10,0)} \n b: 1 \n c: {random.randint(8,9)} \n d: {random.randint(10,100)} ")
-        k=input()
-        while k!="b":
-            if k not in ["a","b","c","d"]:
-                print("tu dois répondes avec la lettre a b c ou d !")
-            else: 
-                print("ce n'est pas la bonne réponses")
-            k=input()
-        print(f"en effet {k} est la bonne réponse ")
-        return(None)
-    if i == 4:
-        print("question: What galaxy is Earth located in?")
-        print("a - Andromeda Galaxy\nb - Whirlpool Galaxy\nc - Milky Way Galaxy")
-        k=input()
-        while k!="c":
-            if k not in ["a","b","c"]:
-                print("tu dois répondes avec la lettre a b ou c!")
-            else: 
-                print("ce n'est pas la bonne réponses")
-            k=input()
-        print(f"en effet {k} est la bonne réponse ")
-        return(None)
+def quiz():
+    questions = [
+        {
+            "question": "What is 2+2?",
+            "options": ["a", "b", "c", "d"],
+            "correct": "d",
+            "answers": lambda: [random.randint(0, 2), random.randint(5, 7), random.randint(8, 9), 4]
+        },
+        {
+            "question": "What is 2-2?",
+            "options": ["a", "b", "c", "d"],
+            "correct": "a",
+            "answers": lambda: [0, random.randint(5, 7), random.randint(8, 9), random.randint(10, 100)]
+        },
+        {
+            "question": "What is 2*2?",
+            "options": ["a", "b", "c", "d"],
+            "correct": "c",
+            "answers": lambda: [random.randint(0, 2), random.randint(5, 7), 4, random.randint(8, 9)]
+        },
+        {
+            "question": "What is 2/2?",
+            "options": ["a", "b", "c", "d"],
+            "correct": "b",
+            "answers": lambda: [random.randint(-10, 0), 1, random.randint(8, 9), random.randint(10, 100)]
+        }
+    ]
 
-    
-    
+    i = random.randint(0, len(questions) - 1)
+    question = questions[i]
+
+    print(question["question"])
+    answers = question["answers"]()
+    for idx, option in enumerate(question["options"]):
+        print(f" {option}: {answers[idx]}")
+    k = input("Please answer with the letter a, b, c, or d: ").lower()
+    while k != question["correct"]:
+        if k not in question["options"]:
+            print("You must answer with the letter a, b, c, or d!")
+        else:
+            print("That's not the correct answer.")
+        k = input("Please answer with the letter a, b, c, or d: ").lower()
+    print(f"Indeed, {k} is the correct answer.")
+
+if __name__ == "__main__":
+    quiz()
